@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Xbox 360 Achievement Badge</title>
+		<link rel="stylesheet" href="style.css" />
+	</head>
+	<body>
+		<!-- HTML-Element -->
+		<div id="badgeContainer" />
+		
+		<!-- Beziehe "twitch-js" ein -->
+		<script src="https://unpkg.com/twitch-js"></script>
+		
+		<!-- JavaScript-Code -->
+		<script type="module">
+			const { Chat } = window.TwitchJs;
+			let token = undefined; // OAuth-Token
+			let username = undefined; // Benutzername
+			let rewardID = undefined; // Kanalpunkte-Belohnungs-ID
+			let channel = "CrazyGermanOtaku"; // Kanal
+			var currentBadge;
+			
+			// Gamerscore
+			const badgeGamerscore = [
+				["5"],
+				["10"],
+				["15"],
+				["20"],
+				["25"],
+				["30"],
+				["35"],
+				["40"],
+				["45"],
+				["50"],
+				["55"],
+				["60"],
+				["65"],
+				["70"],
+				["75"],
+				["80"],
+				["85"],
+				["90"],
+				["95"],
+				["100"],
+			];
+			
+			// Text (Deutsch)
+			const badgeText = [
+				["Cyberbacher"],
+				["Gnampf!"],
+				["LOL, Internet"],
+				["OwO was ist das?"],
+			];
+			
+			// Text (Englisch)
+			const badgeTextEN = [
+				["Cyberbacher"],
+				["Gnampf!"],
+				["LOL, Internet"],
+				["OwO what's this?"],
+			];
+			
+			const handleMessage = (msg) => {
+				if (msg.event != "PRIVMSG") { return; }
+				
+				if (rewardID != undefined) {
+					if (msg.tags.customRewardId != undefined) {
+						if (msg.tags.customRewardId == rewardID) {
+							setBadge();
+						}
+					}
+				}
+				
+				// Chat-Befehl (Deutsch - !erfolg / !errrungenschaft)
+				if (msg.message.startsWith("!erfolg")) {
+					setBadge();
+				}
+				
+				// Chat-Befehl (Englisch - !achievement)
+				if (msg.message.startsWith("!achievement")) {
+					setBadgeEN();
+				}
+				
+				// Überprüfe Chat-Verbindung
+				if (msg.message.startsWith("!syscheck")) {
+					chatsay(channel, '/me Achievement ist 𝗿𝗲𝗮𝗱𝘆');
+				}
+			};
+			
+			// Funktion für Achievement-Befehl (Deutsch)
+			function setBadge() {
+				// Entferne derzeitige Achievement, wenn neues Achievement erstellt wird
+				console.log(currentBadge);
+				if (currentBadge != undefined) {
+					currentBadge.remove();
+				}
+				
+				// Wähle Gamerscore und Text zufällig aus
+				var writeGamerscore = badgeGamerscore[Math.floor(Math.random()*badgeGamerscore.length)];
+				var writeText = badgeText[Math.floor(Math.random()*badgeText.length)];
+				
+				const badgeContainer = document.getElementById('badgeContainer');
+				
+				// Erstelle div-Element mit Klasse "achievement-banner"
+				let achievementBanner = document.createElement('div');
+				achievementBanner.classList.add("achievement-banner");
+				
+				// Erstelle audio-Element
+				let achievementUnlocked = document.createElement('audio');
+				achievementUnlocked.classList.add("achievement-unlocked");
+				achievementUnlocked.setAttribute("autoplay", "");
+				achievementUnlocked.setAttribute("src", "http://traffic.libsyn.com/majornelson/AchievementUnlocked.mp3");
+				achievementBanner.appendChild(achievementUnlocked);
+				
+				// Erstelle div-Element mit Klasse "achievement-icon"
+				let achievementIcon = document.createElement('div');
+				achievementIcon.classList.add("achievement-icon");
+				achievementBanner.appendChild(achievementIcon);
+				
+				// Erstelle span-Element mit Klasse "icon"
+				let icon = document.createElement('span');
+				icon.classList.add("icon");
+				achievementIcon.appendChild(icon);
+				
+				// Erstelle span-Element "icon-trophy"
+				let iconTrophy = document.createElement('span');
+				iconTrophy.classList.add("icon-trophy");
+				icon.appendChild(iconTrophy);
+				
+				// Erstelle div-Element mit Klasse "achievement-text"
+				let achievementText = document.createElement('div');
+				achievementText.classList.add("achievement-text");
+				achievementBanner.appendChild(achievementText);
+				
+				// Erstelle p-Element mit Klasse "achievement-notification"
+				let achievementNotification = document.createElement('p');
+				achievementNotification.classList.add("achievement-notification");
+				achievementNotification.appendChild(document.createTextNode("Erfolg freigeschaltet"));
+				achievementText.appendChild(achievementNotification);
+				
+				// Erstelle p-Element mit Klasse "achievement-name"
+				let achievementName = document.createElement('p');
+				achievementName.classList.add("achievement-name");
+				achievementName.appendChild(document.createTextNode(writeGamerscore + "G – " + writeText));
+				achievementText.appendChild(achievementName);
+				
+				let badgeObject = badgeContainer.appendChild(achievementBanner);
+				currentBadge = badgeObject;
+				
+				// Schreibe Log der aktuellen Bauchbinde
+				console.log("Achievement unlocked:" + writeGamerscore + " – " + writeText);
+			}
+			
+			// Funktion für Achievement-Befehl (Englisch)
+			function setBadgeEN() {
+				// Entferne derzeitige Achievement, wenn neues Achievement erstellt wird
+				console.log(currentBadge);
+				if (currentBadge != undefined) {
+					currentBadge.remove();
+				}
+				
+				// Wähle Gamerscore und Text zufällig aus
+				var writeGamerscore = badgeGamerscore[Math.floor(Math.random()*badgeGamerscore.length)];
+				var writeText = badgeTextEN[Math.floor(Math.random()*badgeTextEN.length)];
+				
+				const badgeContainer = document.getElementById('badgeContainer');
+				
+				// Erstelle div-Element mit Klasse "achievement-banner"
+				let achievementBanner = document.createElement('div');
+				achievementBanner.classList.add("achievement-banner");
+				
+				// Erstelle audio-Element
+				let achievementUnlocked = document.createElement('audio');
+				achievementUnlocked.classList.add("achievement-unlocked");
+				achievementUnlocked.setAttribute("autoplay", "");
+				achievementUnlocked.setAttribute("src", "AchievementUnlocked.mp3");
+				achievementBanner.appendChild(achievementUnlocked);
+				
+				// Erstelle div-Element mit Klasse "achievement-icon"
+				let achievementIcon = document.createElement('div');
+				achievementIcon.classList.add("achievement-icon");
+				achievementBanner.appendChild(achievementIcon);
+				
+				// Erstelle span-Element mit Klasse "icon"
+				let icon = document.createElement('span');
+				icon.classList.add("icon");
+				achievementIcon.appendChild(icon);
+				
+				// Erstelle span-Element "icon-trophy"
+				let iconTrophy = document.createElement('span');
+				iconTrophy.classList.add("icon-trophy");
+				icon.appendChild(iconTrophy);
+				
+				// Erstelle div-Element mit Klasse "achievement-text"
+				let achievementText = document.createElement('div');
+				achievementText.classList.add("achievement-text");
+				achievementBanner.appendChild(achievementText);
+				
+				// Erstelle p-Element mit Klasse "achievement-notification"
+				let achievementNotification = document.createElement('p');
+				achievementNotification.classList.add("achievement-notification");
+				achievementNotification.appendChild(document.createTextNode("Achievement unlocked"));
+				achievementText.appendChild(achievementNotification);
+				
+				// Erstelle p-Element mit Klasse "achievement-name"
+				let achievementName = document.createElement('p');
+				achievementName.classList.add("achievement-name");
+				achievementName.appendChild(document.createTextNode(writeGamerscore + "G – " + writeText));
+				achievementText.appendChild(achievementName);
+				
+				let badgeObject = badgeContainer.appendChild(achievementBanner);
+				currentBadge = badgeObject;
+				
+				// Schreibe Log der aktuellen Bauchbinde
+				console.log("Achievement unlocked:" + writeGamerscore + " – " + writeText);
+			}
+			
+			function chatsay(channel, text) {
+				if (token != undefined) {
+					chatobj.say(channel, text);
+				} else {
+					console.log(text + " (is what I'd say if I HAD A TOKEN!!!)");
+				}
+			}
+			
+			const run = async () => {
+				const queryString = window.location.search;
+				const urlParams = new URLSearchParams(queryString);
+				
+				// Analysiere Kanalparameter
+				if(urlParams.has('channel')) {
+					channel = urlParams.get('channel');
+				}
+				
+				if(urlParams.has('rewardID')) {
+					rewardID = urlParams.get('rewardID');
+				}
+				
+				if(urlParams.has('username') && urlParams.has('token')) {
+					username = urlParams.get('username');
+					token = urlParams.get('token');
+				}
+				
+				const chat = new Chat({
+					token,
+					username,
+					log: { level: "warn" }
+				});
+				
+				chat.on("*", (message) => {
+					handleMessage(message);
+				});
+				
+				await chat.connect();
+				await chat.join(channel);
+				return chat;
+			};
+				
+			const chatobj = run();
+		</script>
+	</body>
+</html>
