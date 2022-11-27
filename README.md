@@ -2,8 +2,8 @@
 Xbox-360-Erfolgsabzeichen als Overlay für Livestreams / Xbox 360 Achievement Badge as overlay for livestreams
 
 ## Nutzung / Use
-!erfolg
-!achievement
+* !erfolg
+* !achievement
 
 ## Installation
 ### Deutsch
