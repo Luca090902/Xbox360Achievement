@@ -9,8 +9,3 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 # AchievementUnlocked.mp3
 Source: (https://news.xbox.com/en-us/2011/10/07/download-the-achievement-unlocked-sound/)
-
-# Part of the badge texts
-Source: (https://tuxproject.de/blog/)
-
-Licensed under: [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International](https://creativecommons.org/licenses/by-nc-sa/4.0/)
