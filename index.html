@@ -18,50 +18,22 @@
 			let token = undefined; // OAuth-Token
 			let username = undefined; // Benutzername
 			let rewardID = undefined; // Kanalpunkte-Belohnungs-ID
-			let channel = "CrazyGermanOtaku"; // Kanal
+			let channel = "(Channel name)"; // Kanal
 			var currentBadge;
 			
-			// Gamerscore
+			// Gamerscore (5-100)
 			const badgeGamerscore = new Array(20).fill(0).map((_, i) => (i+1) * 5);
 			
 			// Text (Deutsch)
 			const badgeText = [
-				"Apokalyptischer als sonst",
-				"Cyberbacher",
-				"Digitales Fledermausland",
-				"Gnampf!",
-				"Heute schon gemuht?",
-				"Hinter euch! Ein Lucanese!",
-				"LOL, Internet",
-				"OwO was ist das?",
-				"Relevanz auf Halbmast",
-				"Sauerkraut fürs Gehirn",
-				"Schachtelsätze mit Clown",
-				"Schärfer als Bananen",
-				"Scheibe Wurst dazu?",
-				"Super-Kuh-Kräfte",
-				"Wenigstens kostet's nix",
-				"Wer hat's erfunden?",
+				"Foo",
+				"Bar",
 			];
 			
 			// Text (Englisch)
 			const badgeTextEN = [
-				"More apocalyptic than usual",
-				"Cyberbacher",
-				"Digital Batland",
-				"Gnampf!",
-				"Have you mooed today",
-				"Behind y'all! A Lucanesian!",
-				"LOL, Internet",
-				"OwO what's this?",
-				"Relevance at half-staff",
-				"Sauerkraut for the brain",
-				"Nesting sentences with clown",
-				"Sharper than bananas",
-				"Slice of sausage to it?",
-				"Super Cow Powers",
-				"At least it costs nothing",
-				"Who invented it?",
+				"Foo",
+				"Bar",
 			];
 			
 			const handleMessage = (msg) => {
