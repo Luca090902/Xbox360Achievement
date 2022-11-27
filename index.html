@@ -22,60 +22,47 @@
 			var currentBadge;
 			
 			// Gamerscore
-			/*
-			const badgeGamerscore = [
-				5,
-				10,
-				15,
-				20,
-				25,
-				30,
-				35,
-				40,
-				45,
-				50,
-				55,
-				60,
-				65,
-				70,
-				75,
-				80,
-				85,
-				90,
-				95,
-				100,
-			];
-			*/ 
-			//gamerScores als array ohne extra array und als zahlen (müssen nicht strings sein können aber)
-			//als loop variante
-			/*
-				const badgeGamerscore = [];
-				for (int i = 1; i <= 20; i++) {
-					badgeGamerscore.push(i*5);
-				}
-			*/
-
-			//mit fill und map funktion
 			const badgeGamerscore = new Array(20).fill(0).map((_, i) => (i+1) * 5);
-			//ja ich mag es sachen auf einzeiler zu verkürzen such dir aus was dir besser gefällt :D
 			
 			// Text (Deutsch)
 			const badgeText = [
+				"Apokalyptischer als sonst",
 				"Cyberbacher",
+				"Digitales Fledermausland",
 				"Gnampf!",
+				"Heute schon gemuht?",
+				"Hinter euch! Ein Lucanese!",
 				"LOL, Internet",
 				"OwO was ist das?",
+				"Relevanz auf Halbmast",
+				"Sauerkraut fürs Gehirn",
+				"Schachtelsätze mit Clown",
+				"Schärfer als Bananen",
+				"Scheibe Wurst dazu?",
+				"Super-Kuh-Kräfte",
+				"Wenigstens kostet's nix",
+				"Wer hat's erfunden?",
 			];
-			//badgeText als array mit strings (statt array mit array mit string)
 			
 			// Text (Englisch)
 			const badgeTextEN = [
+				"More apocalyptic than usual",
 				"Cyberbacher",
+				"Digital Batland",
 				"Gnampf!",
+				"Have you mooed today",
+				"Behind y'all! A Lucanesian!",
 				"LOL, Internet",
 				"OwO what's this?",
+				"Relevance at half-staff",
+				"Sauerkraut for the brain",
+				"Nesting sentences with clown",
+				"Sharper than bananas",
+				"Slice of sausage to it?",
+				"Super Cow Powers",
+				"At least it costs nothing",
+				"Who invented it?",
 			];
-			//bei der englischen variante das gleiche
 			
 			const handleMessage = (msg) => {
 				if (msg.event != "PRIVMSG") { return; }
@@ -100,7 +87,7 @@
 				
 				// Überprüfe Chat-Verbindung
 				if (msg.message.startsWith("!syscheck")) {
-					chatsay(channel, '/me Achievement ist 𝗿𝗲𝗮𝗱𝘆');
+					chatsay(channel, '/me Xbox 360 Achievement Badge is(t) 𝗿𝗲𝗮𝗱𝘆');
 				}
 			};
 			
@@ -251,6 +238,10 @@
 				
 				if(urlParams.has('rewardID')) {
 					rewardID = urlParams.get('rewardID');
+				}
+
+				if(urlParams.has("timeout")) {
+					timeout = urlParams.get("timeout");
 				}
 				
 				if(urlParams.has('username') && urlParams.has('token')) {
