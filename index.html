@@ -18,48 +18,64 @@
 			let token = undefined; // OAuth-Token
 			let username = undefined; // Benutzername
 			let rewardID = undefined; // Kanalpunkte-Belohnungs-ID
-			let channel = "CrazyGermanOtaku"; // Kanal
+			let channel = "scisneromam" //"CrazyGermanOtaku"; // Kanal
 			var currentBadge;
 			
 			// Gamerscore
+			/*
 			const badgeGamerscore = [
-				["5"],
-				["10"],
-				["15"],
-				["20"],
-				["25"],
-				["30"],
-				["35"],
-				["40"],
-				["45"],
-				["50"],
-				["55"],
-				["60"],
-				["65"],
-				["70"],
-				["75"],
-				["80"],
-				["85"],
-				["90"],
-				["95"],
-				["100"],
+				5,
+				10,
+				15,
+				20,
+				25,
+				30,
+				35,
+				40,
+				45,
+				50,
+				55,
+				60,
+				65,
+				70,
+				75,
+				80,
+				85,
+				90,
+				95,
+				100,
 			];
+			*/ 
+			//gamerScores als array ohne extra array und als zahlen (müssen nicht strings sein können aber)
+			//als loop variante
+			/*
+				const badgeGamerscore = [];
+				for (int i = 1; i <= 20; i++) {
+					badgeGamerscore.push(i*5);
+				}
+			*/
+
+			//mit fill und map funktion
+			const badgeGamerscore = new Array(20).fill(0).map((_, i) => (i+1) * 5);
+			//ja ich mag es sachen auf einzeiler zu verkürzen such dir aus was dir besser gefällt :D
 			
 			// Text (Deutsch)
 			const badgeText = [
-				["Cyberbacher"],
-				["Gnampf!"],
-				["LOL, Internet"],
-				["OwO was ist das?"],
+				"Cyberbacher",
+				"Gnampf!",
+				"LOL, Internet",
+				"OwO was ist das?",
 			];
+			//badgeText als array mit strings (statt array mit array mit string)
 			
 			// Text (Englisch)
 			const badgeTextEN = [
-				["Cyberbacher"],
-				["Gnampf!"],
-				["LOL, Internet"],
-				["OwO what's this?"],
+				"Cyberbacher",
+				"Gnampf!",
+				"LOL, Internet",
+				"OwO what's this?",
 			];
+			//bei der englischen variante das gleiche
 			
 			const handleMessage = (msg) => {
 				if (msg.event != "PRIVMSG") { return; }
